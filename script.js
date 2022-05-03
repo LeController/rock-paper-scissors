@@ -1,5 +1,6 @@
 possibleMoves = ['rock', 'paper', 'scissors'];
 
+// evaluates player and computer result
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
 
@@ -42,11 +43,13 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+// randomly rolls computer move
 function computerPlay() {
     computerMove = possibleMoves[Math.floor(Math.random()*3)]
     return computerMove;
 }
 
+// runs 5 rounds of game and tallies score
 function game() {
     let computerScore = 0;
     let playerScore = 0;
