@@ -43,7 +43,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-// randomly rolls computer move
+// randomly rolls computer moves
 function computerPlay() {
     computerMove = possibleMoves[Math.floor(Math.random()*3)]
     return computerMove;
