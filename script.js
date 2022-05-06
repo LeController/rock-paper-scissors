@@ -3,70 +3,66 @@ possibleMoves = ['rock', 'paper', 'scissors'];
 let computerScore = 0;
 let playerScore = 0;
 
+const container = document.querySelector('#container');
+
 // evaluates player and computer result
+game:
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
+
     const result = document.createElement('div');
     const score = document.createElement('div');
-    const container = document.querySelector('#container');
+    const winner = document.createElement('h1');
 
     switch (true) {
         case (playerSelection === computerSelection):
             result.textContent = "It's a draw!"
-            container.appendChild(result);
-            console.log("It's a draw!");
-            return 'draw';
             break;
         case (playerSelection === 'rock' && computerSelection === 'paper'):
             result.textContent = "You lose! Paper beats rock."
-            container.appendChild(result);
             computerScore++;
-            console.log("You lose! Paper beats rock.");
-            return 'computer';
             break;
         case (playerSelection === 'rock' && computerSelection === 'scissors'):
             result.textContent = "You win! Rock beats scissors."
-            container.appendChild(result);
             playerScore++;
-            console.log("You win! Rock beats scissors.");
-            return 'player';
             break;
         case (playerSelection === 'paper' && computerSelection === 'scissors'):
             result.textContent = "You lose! Scissors beats paper."
-            container.appendChild(result);
             computerScore++;
-            console.log("You lose! Scissors beats paper.");
-            return 'computer';
             break;
         case (playerSelection === 'paper' && computerSelection === 'rock'):
             result.textContent = "You win! Paper beats rock." 
-            container.appendChild(result);
             playerScore++;
-            console.log("You win! Paper beats rock.");
-            return 'player';
             break;
         case (playerSelection === 'scissors' && computerSelection === 'rock'):
             result.textContent = "You lose! Rock beats scissors."
-            container.appendChild(result);
             computerScore++;
-            console.log("You lose! Rock beats scissors.");
-            return 'computer';
             break;
         case (playerSelection === 'scissors' && computerSelection === 'paper'):
             result.textContent = "You win! Scissors beats paper."
-            container.appendChild(result);
             playerScore++;
-            console.log("You win! Scissors beats paper.");
-            return 'player';
             break;
     }
-    console.log('HI');
+    container.appendChild(result);
+    score.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
+    container.appendChild(score);
+    
+    if (playerScore === 5) {
+        winner.textContent = "YOU ARE WINNER!";
+        container.appendChild(winner);
+        computerScore = 0;
+        playerScore = 0;
+    } else if (computerScore === 5) {
+        winner.textContent = "YOU LOSE!";
+        container.appendChild(winner);
+        computerScore = 0;
+        playerScore = 0;
+    };
 }
 
 // randomly rolls computer moves
 function computerPlay() {
     computerMove = possibleMoves[Math.floor(Math.random()*3)]
-    console.log(`Computer played ${computerMove}!`)
+    // console.log(`Computer played ${computerMove}!`)
     return computerMove;
 }
 
